@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS `registrations` (
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`event_id`	INTEGER NOT NULL,
+	`first_name`	TEXT NOT NULL,
+	`last_name`	TEXT NOT NULL,
+	`email`	TEXT NOT NULL,
+	`registration_date`	TEXT NOT NULL,
+	FOREIGN KEY(`event_id`) REFERENCES `events`(`id`)
+);
+CREATE TABLE IF NOT EXISTS `events` (
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`name`	TEXT NOT NULL,
+	`start_date`	TEXT NOT NULL,
+	`end_date`	TEXT NOT NULL,
+	`location`	TEXT NOT NULL,
+	`slots`	INTEGER NOT NULL DEFAULT 0,
+	`desc`	TEXT
+);
+COMMIT;

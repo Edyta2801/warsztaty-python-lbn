@@ -1,0 +1,5 @@
+version: 0.1b
+host: 0.0.0.0
+port: 8181
+key: 1944-08-01 Pamietaj
+export_path: /var/tmp
