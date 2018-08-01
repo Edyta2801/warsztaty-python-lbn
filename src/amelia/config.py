@@ -25,8 +25,4 @@ class Config(Singleton):
             )
             Config.app_db = os.path.join(Config.app_dir, 'db', 'amelia_db.sqlite')
             Config.static_path = os.path.join(Config.app_dir, 'amelia', 'static')
-
-            with open(os.path.join(Config.app_dir, 'config.yaml')) as config_file:
-                Config.static_config = yaml.load(config_file)
-                Config.SECRET_KEY = Config.static_config.get('key', 'cbqrey7943chuq')
-                Config.TITLE = 'Amelia {0}'.format(Config.static_config.get('version'))
+            # @FIXME: dopisać odczytywanie konfiguracji statycznej z pliku yaml

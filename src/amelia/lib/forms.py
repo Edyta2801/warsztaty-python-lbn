@@ -200,21 +200,12 @@ class BaseModel(BaseDbModel):
         """
             Zwraca rozbudowaną tekstową reprezentację modelu.
         """
-        text_lines = [
-            '{0}: {1}'.format(field.verbose_name, field.get_value()) for field in self.fields
-        ]
-        return '\n'.join(text_lines) + '\n'
+        # @FIXME: implementacja informacji o obiekcie (jedno pole w jednym wierszu)
+        raise NotImplementedError
 
     def set_data(self, data):
         """
             Ustawia wartości pól formularza na podstawie słownika {nazwa_pola: wartość}.
         """
-        for field_name in data:
-            try:
-                field = self.get_field(field_name)
-            except FieldNotFound:
-                pass
-            else:
-                # waliduje i zapisuje wartość pola
-                field.set_value(field._validate(data[field_name]))
-        self._save_data()
+        # @FIXME: dopisać zapisywanie danych z formularza webowego (z walidacją)
+        raise NotImplementedError

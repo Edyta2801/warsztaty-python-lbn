@@ -84,11 +84,10 @@ class Field(object):
 
     def read_data(self):
         """
-            Pobiera od użytkownika dane i ustawia wartość pola.
+            Pobiera od użytkownika dane, validuje je i ustawia wartość pola.
         """
-        prompt = '{0}: '.format(self.verbose_name)
-        raw_value = input(prompt)
-        self.set_value(self._validate(raw_value))
+        # @FIXME: oprogramować pobieranie danych od użytkownika
+        # +walidacja, +obsługa błędów +zapis
 
     def _validate(self, value):
         """

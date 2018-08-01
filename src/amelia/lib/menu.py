@@ -160,22 +160,7 @@ class GenerateReport(MenuItem):
         """
             Eksportuje rekordy rejestracji do pliku CSV.
         """
-        export_file = os.path.join(Config().static_config['export_path'], 'export.csv')
-        with open(export_file, 'w', newline='') as csvfile:
-            writer = csv.writer(
-                csvfile,
-                delimiter=',',
-                quotechar='"',
-                quoting=csv.QUOTE_MINIMAL
-            )
-            header_row = None
-            for row in RegistrationForm.all():
-                if not header_row:
-                    header_row = [col[0] for col in row]
-                    writer.writerow(header_row)
-                writer.writerow([col[1] for col in row])
-
-            parent.set_message('Plik zapisano do {0}'.format(export_file))
+        # @FIXME: dopisać generowanie raportu do pliku CSV
 
 
 class ExitAppMenu(MenuItem):
@@ -201,20 +186,13 @@ class GenericMenu(object):
         """
             Adaptuje interfejs słownika, pozwala na wybieranie elementów po kluczu.
         """
-        for menu_item in self.ADMIN_MENU:
-            if menu_item.index == index:
-                return menu_item
-        raise KeyError
+        # @FIXME: dopisać implementację słownika pozwalająca na wybieranie menu[obiekt]
+        raise NotImplementedError
 
     def __call__(self):
-        try:
-            while True:
-                self.read()
-        except MenuExit as exit_exception:
-            # obsługa cofania się w górę drzewa menu
-            if exit_exception.level > 1:
-                exit_exception.level -= 1
-                raise exit_exception
+        while True:
+            self.read()
+        # @FIXME: dopisać obsługę cofania się w menu (obsługa MenuExit)
 
     def _clear_screen(self):
         """

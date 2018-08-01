@@ -26,10 +26,8 @@ class TextField(Field):
     min_length = 3
 
     def _validate(self, value):
-        value = super(TextField, self)._validate(value)
-        if len(value) < self.min_length or len(value) > self.max_length:
-            raise InvalidLength("Maximal length exceeded")
-        return value
+        # @FIXME: dopisać walidację pola
+        raise NotImplementedError
 
 
 class EmailField(TextField):
@@ -38,11 +36,8 @@ class EmailField(TextField):
     """
 
     def _validate(self, value):
-        value = super(EmailField, self)._validate(value)
-        if '.' not in value and '@' not in value:
-            # @TODO przepisać na wyreżenia regularne
-            raise ValidationError("Wrong e-mail format")
-        return value
+        # @FIXME: dopisać walidację pola
+        raise NotImplementedError
 
 
 class DateField(Field):
@@ -53,12 +48,8 @@ class DateField(Field):
     _dateformat = '%Y-%m-%d'
 
     def _validate(self, value):
-        value = super(DateField, self)._validate(value)
-        try:
-            datetime.strptime(value, self._dateformat)
-        except (TypeError, ValueError):
-            raise ValidationError("Wrong date format")
-        return value
+        # @FIXME: dopisać walidację pola
+        raise NotImplementedError
 
 
 class AutoDateField(Field):
@@ -70,9 +61,8 @@ class AutoDateField(Field):
             Zwraca wartość pola.
             Rzuca wyjątek ValueNotSet, jeśli na polu nie została ustawiona wartość.
         """
-        if self._value is UndefinedValue:
-            return date.today().isoformat()
-        return self._value
+        # @FIXME: dopisać walidację pola
+        raise NotImplementedError
 
 
 class IntegerField(Field):
@@ -82,8 +72,5 @@ class IntegerField(Field):
     default = 0
 
     def _validate(self, value):
-        value = super(IntegerField, self)._validate(value)
-        try:
-            return int(value)
-        except (TypeError, ValueError):
-            raise ValidationError("Not an integer")
+        # @FIXME: dopisać walidację pola
+        raise NotImplementedError

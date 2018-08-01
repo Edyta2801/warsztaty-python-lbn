@@ -71,33 +71,17 @@ class Event(BaseModel):
     ]
 
     def __str__(self):
-        if self._id:
-            return '[{0}] {1} - {2}'.format(
-                self._id,
-                self.get_field('name').get_value(),
-                self.get_field('start_date').get_value()
-            )
-        return super(Event, self).__str__()
+        # @FIXME: dopisać reprezentację tekstową pola
+        raise NotImplementedError
 
     @classmethod
     def items(cls):
         """
             Pobiera z bazy danych uproszczoną (sformatowaną) listę rekordów.
         """
-        def unzip_row(row):
-            """
-                Rozcala jeden rekord do postaci do wyświetlenia.
-            """
-            row = list(row)
-            return (
-                str(row[0][1]), ' / '.join([row[1][1], row[2][1], row[4][1]])
-            )
-
-        with WithDb() as db:
-            data_rows = db.get_many(
-                MultiSelectQuery(cls._SQL_FETCH_MANY.format(table_name=cls._SQL_TABLENAME))
-            )
-        return [unzip_row(row) for row in data_rows]
+        # @FIXME: dopisać logikę zwracającą listę obiektów do wyświetlenia
+        # (dropdown w webowym formularzu)
+        raise NotImplementedError
 
 
 class RegistrationForm(BaseModel):
@@ -132,14 +116,8 @@ class RegistrationForm(BaseModel):
     ]
 
     def __str__(self):
-        if self._id:
-            return '[{0}] {1} - {2}: {3}'.format(
-                self._id,
-                self.get_field('first_name').get_value(),
-                self.get_field('last_name').get_value(),
-                self.get_field('registration_date').get_value()
-            )
-        return super(Event, self).__str__()
+        # @FIXME: dopisać reprezentację tekstową pola
+        raise NotImplementedError
 
 
 _data_required_message = 'To pole jest wymagane'
